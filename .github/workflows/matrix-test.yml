@@ -6,7 +6,7 @@ on:
 jobs:
   pre-release-matrix-test:
     strategy:
-      # fail-fast: false
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
         python-version: ["3.10", "3.11", "3.12"]
