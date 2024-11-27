@@ -32,6 +32,7 @@ def synthesize_audio(
     duration_control,
     language,
     speaker,
+    style_reference,
     text_to_spec_model,
     vocoder_model,
     vocoder_config,
@@ -63,6 +64,7 @@ def synthesize_audio(
         raise gr.Error("Speaker is not selected. Please select a speaker.")
     config, device, predictions = synthesize_helper(
         model=text_to_spec_model,
+        style_reference=style_reference,
         vocoder_model=vocoder_model,
         vocoder_config=vocoder_config,
         texts=[text],
@@ -253,12 +255,17 @@ def create_demo_app(
                         interactive=interactive_speak,
                         label="Speaker",
                     )
+                if model.config.model.use_global_style_token_module:
+                    with gr.Row():
+                        style_reference = gr.Audio(type="filepath")
+                else:
+                    style_reference = None
                 btn = gr.Button("Synthesize")
             with gr.Column():
                 out_audio = gr.Audio(format="mp3")
         btn.click(
             synthesize_audio_preset,
-            inputs=[inp_text, inp_slider, inp_lang, inp_speak],
+            inputs=[inp_text, inp_slider, inp_lang, inp_speak, style_reference],
             outputs=[out_audio],
         )
     return demo
