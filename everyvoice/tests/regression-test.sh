@@ -77,6 +77,18 @@ r "coverage run -p -m everyvoice synthesize from-text \
     '$FS2'"
 # TODO: check the synthesized files, somehow
 
+# Exercise two-step synthesis
+r "coverage run -p -m everyvoice synthesize from-text --output-type spec --text 'Test via spec.' '$FS2'"
+r "coverage run -p -m everyvoice synthesize from-spec \
+    --input synthesis_output/synthesized_spec/Test-via-spec---speaker_0--eng--spec-pred-22050-mel-librosa.pt \
+    --vocoder-path '$VOCODER'"
+
+# Exercise DeepForceAligner
+# Meh, this appears to be broken...
+#r "coverage run -p -m dfaligner train config/everyvoice-aligner.yaml --config-args training.max_epochs=$EPOCHS"
+#r "coverage run -p -m dfaligner extract-alignments"
+
+
 # 7: spin up the demo
 # everyvoice demo $FS2 $VOCODER &
 
