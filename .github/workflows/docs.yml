@@ -35,6 +35,6 @@ jobs:
           if git diff --name-only origin/gh-pages gh-pages | grep -v dev/sitemap.xml; then
             echo Pushing real changes
             git push origin gh-pages
-          els
+          else
             echo No contentful changes to push
           fi
