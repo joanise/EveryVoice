@@ -94,3 +94,4 @@ Many thanks to:
 ## Tests
 
 Run unit tests by `python -m unittest tests/test_configs.py` or suites of tests by running `everyvoice test dev` if you have the package installed interactively.
+
