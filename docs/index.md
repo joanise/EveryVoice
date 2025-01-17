@@ -1,5 +1,7 @@
 # Getting Started
 
+Foo
+
 Welcome to the EveryVoice TTS Toolkit Documentation page! Please read the background section below to hear a bit about how this project got started, or head over to the [guides](./guides/index.md) section to find a guide to help you get started.
 
 ## Background
